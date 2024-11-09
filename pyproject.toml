@@ -1,5 +1,12 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "bg_mc_sdk"
+readme = "README.md"
+readme-content-type = "text/markdown
+description = "一个用于python3的mc_sdk补全库"
 authors = [
     { name = "classmate_chen", email = "c_l-m@qq.com" },
 ]
@@ -8,3 +15,6 @@ dynamic = ["version"]
 
 [tool.setuptools.dynamic]
 version = { attr = "bg.__version__" }
+
+[project.urls]
+Home = "https://github.com/cluom/bg_mc_sdk"
