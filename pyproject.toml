@@ -1,0 +1,10 @@
+[project]
+name = "bg_mc_sdk"
+authors = [
+    { name = "classmate_chen", email = "c_l-m@qq.com" },
+]
+requires-python = ">=3.0"
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = { attr = "bg.__version__" }
