@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "bg_mc_sdk"
 readme = "README.md"
-readme-content-type = "text/markdown
+readme-content-type = "text/markdown"
 description = "一个用于python3的mc_sdk补全库"
 authors = [
     { name = "classmate_chen", email = "c_l-m@qq.com" },
