@@ -51,4 +51,4 @@ jobs:
           
           gh release create $TAG_NAME --title "$RELEASE_NAME" --notes "Version ${{ env.current_version }} released."
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.AUTO_PUBLISH_TOKEN }}
