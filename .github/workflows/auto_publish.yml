@@ -62,6 +62,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install and configure Poetry
+        if: env.current_version != env.previous_version
         run: |
           pip install build --user
 
