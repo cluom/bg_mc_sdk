@@ -1,0 +1,54 @@
+name: auto_publish
+
+on:
+  push:
+    paths:
+      - sdk/bg/__init__.py
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+
+      - name: Get current and previous version
+        id: versions
+        run: |
+          FILE=sdk/bg/__init__.py
+          CURRENT_VERSION=$(grep -oP "(?<=__version__ = ')[^']+" $FILE)
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_ENV
+
+          git fetch --tags
+
+          # Get the latest tag
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          if [ -z "$LATEST_TAG" ]; then
+            echo "No previous version found."
+            echo "previous_version=0.0.0" >> $GITHUB_ENV
+          else
+            PREVIOUS_VERSION=${LATEST_TAG#v}
+            echo "previous_version=$PREVIOUS_VERSION" >> $GITHUB_ENV
+          fi
+
+      - name: Compare versions and create release if changed
+        if: env.current_version != env.previous_version
+        run: |
+          echo "Current version: ${{ env.current_version }}"
+          echo "Previous version: ${{ env.previous_version }}"
+
+          TAG_NAME="v${{ env.current_version }}"
+          RELEASE_NAME="Release ${{ env.current_version }}"
+
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+          
+          gh release create $TAG_NAME --title "$RELEASE_NAME" --notes "Version ${{ env.current_version }} released."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
