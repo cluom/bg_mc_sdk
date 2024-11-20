@@ -11,6 +11,7 @@ authors = [
 ]
 requires-python = '>=3.0'
 dynamic = ['version']
+keywords = ['mc', 'minecraft', 'netease', 'mc-netease-sdk']
 
 [tool.setuptools.dynamic]
 version = { attr = 'bg.__version__' }
