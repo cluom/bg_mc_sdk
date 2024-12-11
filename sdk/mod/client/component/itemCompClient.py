@@ -47,6 +47,13 @@ class ItemCompClient(BaseComponent):
         """
         pass
 
+    def GetItemTags(self, itemName, auxValue=0):
+        # type: (str, int) -> List[str]
+        """
+        获取物品在minecraft:tags中定义的tags列表
+        """
+        pass
+
     def GetItemBasicInfo(self, itemName, auxValue=0, isEnchanted=False):
         # type: (str, int, bool) -> dict
         """
@@ -114,6 +121,20 @@ class ItemCompClient(BaseComponent):
         # type: () -> List[dict]
         """
         获取目前已注册的所有附魔信息
+        """
+        pass
+
+    def SetCompassTarget(self, x, y, z):
+        # type: (int, int, int) -> bool
+        """
+        设置指南针的朝向位置
+        """
+        pass
+
+    def SetCompassEntity(self, entityId):
+        # type: (str) -> bool
+        """
+        设置指南针朝向的实体
         """
         pass
 

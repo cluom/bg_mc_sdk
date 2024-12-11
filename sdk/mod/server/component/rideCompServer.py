@@ -40,13 +40,6 @@ class RideCompServer(BaseComponent):
         """
         pass
 
-    def SetPlayerRideEntity(self, playerId, rideEntityId, riderIndex=-1):
-        # type: (str, str, int) -> bool
-        """
-        设置玩家骑乘生物（或者船与矿车）
-        """
-        pass
-
     def IsEntityRiding(self):
         # type: () -> bool
         """

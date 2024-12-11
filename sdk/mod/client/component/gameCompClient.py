@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from typing import Tuple
+from mod.common.utils.timer import CallLater
 from typing import Any
 from typing import List
 from mod.common.component.baseComponent import BaseComponent
-from mod.common.utils.timer import CallLater
+from typing import Tuple
 
 class GameComponentClient(BaseComponent):
     def ShowHealthBar(self, show):
@@ -256,6 +256,13 @@ class GameComponentClient(BaseComponent):
         # type: (bool) -> None
         """
         是否开启字体合批
+        """
+        pass
+
+    def CanSee(self, fromId, targetId, viewRange=8.0, onlySolid=True, angleX=180.0, angleY=180.0):
+        # type: (str, str, float, bool, float, float) -> bool
+        """
+        判断起始对象是否可看见目标对象,基于对象的Head位置判断
         """
         pass
 

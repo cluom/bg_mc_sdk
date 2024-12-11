@@ -74,3 +74,10 @@ class FrameAniControlComp(BaseComponent):
         """
         pass
 
+    def SetGlobal(self, isGlobal):
+        # type: (bool) -> bool
+        """
+        设置序列帧是否是全局的，默认为否
+        """
+        pass
+

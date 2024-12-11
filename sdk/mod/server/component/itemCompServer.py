@@ -117,6 +117,13 @@ class ItemCompServer(BaseComponent):
         """
         pass
 
+    def GetItemTags(self, itemName, auxValue=0):
+        # type: (str, int) -> List[str]
+        """
+        获取物品在minecraft:tags中定义的tags列表
+        """
+        pass
+
     def GetItemBasicInfo(self, itemName, auxValue=0, isEnchanted=False):
         # type: (str, int, bool) -> dict
         """
@@ -309,7 +316,7 @@ class ItemCompServer(BaseComponent):
     def SetItemTierSpeed(self, itemDict, speed):
         # type: (dict, float) -> bool
         """
-         设置工具类物品的挖掘速度
+         设置工具类物品的挖掘速度(可通过userData中的ModTierSpeed获取挖掘速度)
         """
         pass
 
@@ -401,6 +408,13 @@ class ItemCompServer(BaseComponent):
         # type: () -> List[dict]
         """
         获取目前已注册的所有附魔信息
+        """
+        pass
+
+    def GetItemInfoByBlockName(self, blockName, auxValue=0):
+        # type: (str, int) -> dict
+        """
+        通过方块名称及aux值获取物品信息
         """
         pass
 

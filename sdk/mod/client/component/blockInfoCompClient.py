@@ -47,8 +47,8 @@ class BlockInfoComponentClient(BaseComponent):
         """
         pass
 
-    def GetDestroyTotalTime(self, blockName, itemName=None):
-        # type: (str, str) -> float
+    def GetDestroyTotalTime(self, blockName, itemName=None, miningArgs=None):
+        # type: (str, str, dict) -> float
         """
         获取使用物品破坏方块需要的时间
         """

@@ -17,6 +17,27 @@ class EntityEventComponentServer(BaseComponent):
         """
         pass
 
+    def AddActorComponent(self, componentName, componentValue):
+        # type: (str, str) -> bool
+        """
+        给指定实体自定义添加实体Component
+        """
+        pass
+
+    def RemoveActorComponent(self, componentName):
+        # type: (str) -> bool
+        """
+        删除指定实体的指定Component
+        """
+        pass
+
+    def GetComponents(self):
+        # type: () -> dict
+        """
+        获取指定实体的生效Components
+        """
+        pass
+
     def TriggerCustomEvent(self, entityId, eventName):
         # type: (str, str) -> bool
         """

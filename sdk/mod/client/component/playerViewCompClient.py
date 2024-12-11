@@ -87,3 +87,10 @@ class PlayerViewCompClient(BaseComponent):
         """
         pass
 
+    def SetPlayerFovScale(self, fovScale):
+        # type: (float) -> bool
+        """
+        将渲染实际使用的fov变为设置中的fov乘以fovScale,fovScale越接近0，其效果越接近原版望远镜效果
+        """
+        pass
+

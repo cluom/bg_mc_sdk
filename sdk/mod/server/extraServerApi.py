@@ -110,7 +110,7 @@ def GetEngineActor():
     """
     pass
 
-def getEntitiesOrBlockFromRay(dimensionId, pos, rot, distance=16, isThrouth=False, filterType=1):
+def getEntitiesOrBlockFromRay(dimensionId, pos, rot, distance=16, isThrough=False, filterType=1):
     # type: (int, Tuple[float,float,float], Tuple[float,float,float], int, bool, minecraftEnum) -> List[dict]
     """
     从指定位置发射一条射线，获取与射线相交的实体和方块

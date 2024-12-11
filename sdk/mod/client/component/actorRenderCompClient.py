@@ -96,10 +96,24 @@ class ActorRenderCompClient(BaseComponent):
         """
         pass
 
+    def AddAnimationControllerToOneActor(self, entityId, animationControllerKey, animationControllerName):
+        # type: (str, str, str) -> bool
+        """
+        增加单个生物渲染动画控制器
+        """
+        pass
+
     def RemoveActorAnimationController(self, actorIdentifier, animationControllKey):
         # type: (str, str) -> bool
         """
         移除生物渲染动画控制器
+        """
+        pass
+
+    def RemoveAnimationControllerForOneActor(self, entityId, animationControllKey):
+        # type: (str, str) -> bool
+        """
+        移除单个生物渲染动画控制器
         """
         pass
 
@@ -114,6 +128,13 @@ class ActorRenderCompClient(BaseComponent):
         # type: (str, str, str) -> bool
         """
         增加生物渲染需要的<a href="../../../../mcguide/20-玩法开发/15-自定义游戏内容/3-自定义生物/01-自定义基础生物.html#_3-自定义材质">材质</a>
+        """
+        pass
+
+    def AddRenderMaterialToOneActor(self, entityId, materialKey, materialName):
+        # type: (str, str, str) -> bool
+        """
+        增加单个生物渲染需要的<a href="../../../../mcguide/20-玩法开发/15-自定义游戏内容/3-自定义生物/01-自定义基础生物.html#_3-自定义材质">材质</a>
         """
         pass
 
@@ -138,6 +159,13 @@ class ActorRenderCompClient(BaseComponent):
         """
         pass
 
+    def AddRenderControllerToOneActor(self, entityId, renderControllerName, condition=''):
+        # type: (str, str, str) -> bool
+        """
+        增加单个生物<a href="../../../../mcguide/20-玩法开发/15-自定义游戏内容/3-自定义生物/01-自定义基础生物.html#_7-自定义渲染控制器">的渲染控制器</a>
+        """
+        pass
+
     def RemoveActorRenderController(self, actorIdentifier, renderControllerName):
         # type: (str, str) -> bool
         """
@@ -145,10 +173,24 @@ class ActorRenderCompClient(BaseComponent):
         """
         pass
 
+    def RemoveRenderControllerForOneActor(self, entityId, renderControllerName):
+        # type: (str, str) -> bool
+        """
+        删除单个生物<a href="../../../../mcguide/20-玩法开发/15-自定义游戏内容/3-自定义生物/01-自定义基础生物.html#_7-自定义渲染控制器">的渲染控制器</a>
+        """
+        pass
+
     def AddActorGeometry(self, actorIdentifier, geometryKey, geometryName):
         # type: (str, str, str) -> bool
         """
         增加生物渲染几何体
+        """
+        pass
+
+    def AddGeometryToOneActor(self, entityId, geometryKey, geometryName):
+        # type: (str, str, str) -> bool
+        """
+        增加单个生物渲染几何体
         """
         pass
 
@@ -187,10 +229,24 @@ class ActorRenderCompClient(BaseComponent):
         """
         pass
 
+    def RemoveGeometryForOneActor(self, entityId, geometryKey):
+        # type: (str, str) -> bool
+        """
+        删除单个生物的渲染几何体
+        """
+        pass
+
     def AddActorTexture(self, actorIdentifier, textureKey, texturePath):
         # type: (str, str, str) -> bool
         """
         增加生物渲染贴图
+        """
+        pass
+
+    def AddTextureToOneActor(self, entityId, textureKey, texturePath):
+        # type: (str, str, str) -> bool
+        """
+        增加单个生物的渲染贴图
         """
         pass
 
@@ -212,6 +268,13 @@ class ActorRenderCompClient(BaseComponent):
         # type: (str, str) -> bool
         """
         删除生物渲染贴图
+        """
+        pass
+
+    def RemoveTextureForOneActor(self, entityId, textureKey):
+        # type: (str, str) -> bool
+        """
+        删除单个生物的渲染贴图
         """
         pass
 
@@ -243,6 +306,13 @@ class ActorRenderCompClient(BaseComponent):
         """
         pass
 
+    def AddParticleEffectToOneActor(self, entityId, effectKey, effectName):
+        # type: (str, str, str) -> bool
+        """
+        增加生物特效资源
+        """
+        pass
+
     def AddPlayerSoundEffect(self, soundKey, soundName):
         # type: (str, str) -> bool
         """
@@ -257,6 +327,13 @@ class ActorRenderCompClient(BaseComponent):
         """
         pass
 
+    def AddSoundEffectToOneActor(self, entityId, soundKey, soundName):
+        # type: (str, str, str) -> bool
+        """
+        增加单个生物的音效资源
+        """
+        pass
+
     def AddPlayerAnimationIntoState(self, animationControllerName, stateName, animationName, condition=''):
         # type: (str, str, str, str) -> bool
         """
@@ -268,6 +345,13 @@ class ActorRenderCompClient(BaseComponent):
         # type: (str, str, str, bool) -> bool
         """
         在生物的客户端实体定义（minecraft:client_entity）json中的scripts/animate节点添加动画/动画控制器
+        """
+        pass
+
+    def AddScriptAnimateToOneActor(self, entityId, animateName, condition='', autoReplace=False):
+        # type: (str, str, str, bool) -> bool
+        """
+        在单个生物的客户端实体定义（minecraft:client_entity）json中的scripts/animate节点添加动画/动画控制器
         """
         pass
 
@@ -289,6 +373,13 @@ class ActorRenderCompClient(BaseComponent):
         # type: (str, str, str) -> bool
         """
         增加生物渲染动画
+        """
+        pass
+
+    def AddAnimationToOneActor(self, entityId, animationKey, animationName):
+        # type: (str, str, str) -> bool
+        """
+        增加单个生物渲染动画
         """
         pass
 
@@ -415,6 +506,20 @@ class ActorRenderCompClient(BaseComponent):
         # type: (str, int) -> Tuple[float,float,float,float]
         """
         获取在实体shader当中使用的UI自定义变量的值，该变量可在微软UI纸娃娃（paperdoll）及网易版纸娃娃（neteasepaperdoll)上使用identifier渲染某一类生物实体时使用。该自定义变量包含EXTRA_ACTOR_UNIFORM1,EXTRA_ACTOR_UNIFORM2,EXTRA_ACTOR_UNIFORM3,EXTRA_ACTOR_UNIFORM4，总共4组，每组为一个vec4(float, float, float ,float)类型的向量。
+        """
+        pass
+
+    def SetActorBlockGeometryScale(self, geometryName, scale=(1, 1, 1)):
+        # type: (str, Tuple[float,float,float]) -> bool
+        """
+        设置实体的方块几何体模型的缩放倍率。
+        """
+        pass
+
+    def GetActorBlockGeometryScale(self, geometryName):
+        # type: (str) -> scale
+        """
+        获取实体的方块几何体模型的缩放倍率。
         """
         pass
 

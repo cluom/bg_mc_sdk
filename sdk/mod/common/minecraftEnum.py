@@ -81,7 +81,7 @@ class ArmorSlotType(object):
 class AttrType(object):
 	HEALTH = 0              # 生命值, 原版的值范围为[0,20]
 	SPEED = 1               # 移速, 原版的值范围为[0,+∞]
-	DAMAGE = 2              # 攻击力, 原版的值范围为[1,1]
+	DAMAGE = 2              # 攻击力, 原版的值范围为[1,+∞], 默认最大值为1
 	UNDERWATER_SPEED = 3    # 水里的移速, 原版的值范围为[0,+∞]
 	HUNGER = 4              # 饥饿值, 原版的值范围为[0,20]
 	SATURATION = 5          # 饱和值, 原版的值范围为[0,20]
@@ -1262,7 +1262,6 @@ class OptionId(object):
 	SPLIT_CONTROLS = "SPLIT_CONTROLS" 				#准心瞄准
 	VIEW_BOBBING = "VIEW_BOBBING"  					#视角摇晃
 	INPUT_MODE = "INPUT_MODE"						#操作模式
-	TRADITION_CONTROLS = "TRADITION_CONTROLS"		#十字键操作
 	HIDE_HUD = "HIDE_HUD"							#隐藏HUD
 	CAMERA_SHAKE = "CAMERA_SHAKE"					#摄像机摇晃
 	TRANSPARENTLEAVES = "TRANSPARENTLEAVES"			#花俏的树叶
@@ -1280,7 +1279,6 @@ class OriginGUIName(object):
 	JumpBtn = "binding.area.jump"	# 跳跃键
 	AscendBtn = "binding.area.ascend" # 右侧双击跳跃键飞行后操作按键： 上移
 	DescendBtn = "binding.area.descend" # 右侧双击跳跃键飞行后操作按键： 下移
-	WalkStateBtn = "binding.area.walkstate" # 移动状态
 	PauseBtn = "binding.area.pause" # 暂停键
 	ChatBtn = "binding.area.chat"	# 聊天按钮
 	MenuBtn = "binding.area.fold_menu"	# 菜单按钮(截图分享)
@@ -1293,6 +1291,24 @@ class PistonFacing(object):
 	South = 3
 	West = 4
 	East = 5
+
+class PlayerActionType(object):
+	StartSleeping = 5 # 开始睡觉
+	StopSleeping = 6 # 停止睡觉
+	StartSprinting = 9 # 开始冲刺
+	StopSprinting = 10 # 停止冲刺
+	StartSneaking = 11 # 开始潜行
+	StopSneaking = 12 # 停止潜行
+	StartGliding = 15 # 开始滑翔（鞘翅）
+	StopGliding = 16 # 停止滑翔（鞘翅）
+	StartSwimming = 21 # 开始游泳
+	StopSwimming = 22 # 停止游泳
+	StartSpinAttack = 23 # 开始旋转攻击（三叉戟）
+	StopSpinAttack = 24 # 停止旋转攻击（三叉戟）
+	StartCrawling = 32 # 开始爬行
+	StopCrawling = 33 # 停止爬行
+	StartFlying = 34 # 开始飞行
+	StopFlying = 35 # 停止飞行
 
 class PlayerExhauseRatioType(object):
 	HEAL = 0         #通过饥饿值恢复生命

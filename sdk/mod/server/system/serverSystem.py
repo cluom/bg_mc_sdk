@@ -27,15 +27,15 @@ class ServerSystem(BaseSystem):
         """
         pass
 
-    def CreateEngineEntityByNBT(self, nbtDict, pos=None, rot=None, dimensionId=0, isNpc=False):
-        # type: (dict, Union[Tuple[float,float,float],None], Union[Tuple[float,float],None], int, bool) -> Union[str,None]
+    def CreateEngineEntityByNBT(self, nbtDict, pos=None, rot=None, dimensionId=0, isNpc=False, isGlobal=None):
+        # type: (dict, Union[Tuple[float,float,float],None], Union[Tuple[float,float],None], int, bool, Union[None,bool]) -> Union[str,None]
         """
         根据nbt数据创建实体
         """
         pass
 
-    def CreateEngineEntityByTypeStr(self, engineTypeStr, pos, rot, dimensionId=0, isNpc=False):
-        # type: (str, Tuple[float,float,float], Tuple[float,float], int, bool) -> Union[str,None]
+    def CreateEngineEntityByTypeStr(self, engineTypeStr, pos, rot, dimensionId=0, isNpc=False, isGlobal=False):
+        # type: (str, Tuple[float,float,float], Tuple[float,float], int, bool, bool) -> Union[str,None]
         """
         创建指定identifier的实体
         """

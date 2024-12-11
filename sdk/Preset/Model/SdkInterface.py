@@ -807,7 +807,7 @@ class SdkInterface():
         """
         pass
 
-    def SetCommand(self, cmdStr, playerId=None, showOutput=False):
+    def SetCommand(self, cmdStr, entityId=None, showOutput=False):
         # type: (str, str, bool) -> bool
         """
         使用游戏内指令

@@ -4,9 +4,7 @@ from typing import Generator
 from typing import Union
 from mod.client.ui.NativeScreenManager import NativeScreenManager
 from mod.client.ui.screenNode import ScreenNode
-from mod.client.ui.miniMapBaseScreen import MiniMapBaseScreen
 from typing import List
-from mod.client.system.clientSystem import ClientSystem
 from mod.client.component.engineCompFactoryClient import EngineCompFactoryClient
 from mod.client.ui.viewRequest import ViewRequest
 from typing import Type
@@ -14,8 +12,8 @@ from mod.common.component.baseComponent import BaseComponent
 from mod.client.ui.CustomUIControlProxy import CustomUIControlProxy
 import mod.common.minecraftEnum as minecraftEnum
 from mod.client.ui.viewBinder import ViewBinder
+from mod.client.system.clientSystem import ClientSystem
 from typing import Tuple
-from mod.common.minecraftEnum import WalkState
 from typing import Callable
 from mod.client.plugin.illustratedBook.bookManager import BookManager
 from typing import Any
@@ -156,7 +154,7 @@ def HideVoiceGUI(isHide):
 def HideWalkGui(isHide):
     # type: (bool) -> None
     """
-    隐藏游戏中右上角的移动类型按钮。隐藏后点击相应位置不会响应
+    隐藏游戏中跑/走按钮。隐藏后点击相应位置不会响应
     """
     pass
 
@@ -198,7 +196,7 @@ def OpenNeteaseStoreGui(categoryName, itemName):
 def HideSwimGui(isHide):
     # type: (bool) -> None
     """
-    隐藏游戏中的浮潜按钮。隐藏后点击相应位置不会响应
+    隐藏游戏中的浮潜按钮。隐藏后点击相应位置不会响应。仅影响十字键操作下的浮潜按钮，摇杆模式上浮=跳跃，下潜=潜行，需要通过HideJumpGui和HideSneakGui来隐藏
     """
     pass
 
@@ -491,7 +489,7 @@ def HideMoveGui(isHide):
 def SetCrossHair(visible):
     # type: (bool) -> None
     """
-    设置是否使用“准星瞄准”，即设置->触摸屏->准星瞄准
+    设置是否使用“准星瞄准”
     """
     pass
 
@@ -618,20 +616,6 @@ def GetPlatform():
     # type: () -> int
     """
     获取脚本运行的平台
-    """
-    pass
-
-def ChangeWalkState():
-    # type: () -> None
-    """
-    切换行走/潜行/跑步状态
-    """
-    pass
-
-def GetWalkState():
-    # type: () -> WalkState
-    """
-    获取玩家行走/潜行/跑步状态
     """
     pass
 
@@ -821,6 +805,13 @@ def HideCrossHairGUI(isHide):
     # type: (bool) -> bool
     """
     隐藏hud界面的十字准心显示
+    """
+    pass
+
+def getEntitiesOrBlockFromRay(pos, rot, distance=16, isThrough=False, filterType=1):
+    # type: (Tuple[float,float,float], Tuple[float,float,float], int, bool, minecraftEnum) -> List[dict]
+    """
+    从指定位置发射一条射线，获取与射线相交的实体和方块
     """
     pass
 

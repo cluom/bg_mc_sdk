@@ -116,3 +116,10 @@ class ParticleControlComp(BaseComponent):
         """
         pass
 
+    def SetGlobal(self, enable):
+        # type: (bool) -> bool
+        """
+        设置粒子发射器是否为全局粒子发射器, 默认是False
+        """
+        pass
+

@@ -159,3 +159,10 @@ class PlayerCompClient(BaseComponent):
         """
         pass
 
+    def GetPlayerDestroyTotalTime(self, blockName):
+        # type: (str) -> float
+        """
+        获取玩家破坏方块需要的时间，受玩家状态（急迫、潮涌、挖掘疲劳）和手持物及手持物附魔（效率）影响
+        """
+        pass
+

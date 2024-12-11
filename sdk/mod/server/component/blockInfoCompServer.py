@@ -77,6 +77,13 @@ class BlockInfoComponentServer(BaseComponent):
         """
         pass
 
+    def GetBlockTags(self, blockName):
+        # type: (str) -> List[str]
+        """
+        获取方块在tags:*中定义的tags列表
+        """
+        pass
+
     def GetBlockBasicInfo(self, blockName):
         # type: (str) -> dict
         """
@@ -157,7 +164,14 @@ class BlockInfoComponentServer(BaseComponent):
     def GetBlockEntityData(self, dimension, pos):
         # type: (int, Tuple[int,int,int]) -> Union[dict,None]
         """
-        用于获取方块（包括自定义方块）的数据，数据只读不可写
+        用于获取方块（包括自定义方块）的数据，如需修改，请使用setblockentitydata接口
+        """
+        pass
+
+    def SetBlockEntityData(self, dimension, pos, nbtData):
+        # type: (int, Tuple[int,int,int], dict) -> bool
+        """
+        用于设置方块（包括自定义方块）的数据
         """
         pass
 
@@ -224,8 +238,8 @@ class BlockInfoComponentServer(BaseComponent):
         """
         pass
 
-    def GetDestroyTotalTime(self, blockName, itemName=None):
-        # type: (str, str) -> float
+    def GetDestroyTotalTime(self, blockName, itemName=None, miningArgs=None):
+        # type: (str, str, dict) -> float
         """
         获取使用物品破坏方块需要的时间
         """
