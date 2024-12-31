@@ -517,7 +517,7 @@ class ActorRenderCompClient(BaseComponent):
         pass
 
     def GetActorBlockGeometryScale(self, geometryName):
-        # type: (str) -> scale
+        # type: (str) -> Tuple[float,float,float]
         """
         获取实体的方块几何体模型的缩放倍率。
         """

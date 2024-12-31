@@ -69,7 +69,7 @@ class PostProcessComponent(BaseComponent):
         """
         pass
 
-    def AddPostProcess(self, processDict, index):
+    def AddPostProcess(self, processDict, index=-1):
         # type: (dict, int) -> bool
         """
         添加后处理效果，与graphics_settings/post_process.json定义的process等效

@@ -91,7 +91,7 @@ class AttrType(object):
 	FOLLOW_RANGE = 9		# 跟随方块数(一般指怪的仇恨范围), 原版值范围为[1,2024]，默认值为16
 	KNOCKBACK_RESISTANCE = 10	# 击退抵抗，原版值范围为[1,+∞]，默认最大值为1
 	JUMP_STRENGTH = 11		# 跳跃力(指骑乘后跳跃可跳跃的高度)，原版值范围为[0,+∞]
-	ARMOR = 12				# 护甲值，取决于身上穿戴的护甲总防御量
+	ARMOR = 12				# 护甲值，取决于身上穿戴的护甲总防御量和接口增加的额外护甲值。客户端无法获取接口增加的护甲值，建议开发者自行同步
 
 class AttributeBuffType(object):
 	Hunger = 0                    # 饥饿
@@ -289,6 +289,8 @@ class ContainerType(object):
 	CARTOGRAPHY = 30 # 制图台
 	SMITHING_TABLE= 33 # 锻造台
 	CHEST_BOAT = 34 # 运输船
+	DECORATED_POT = 35 # 饰纹陶罐
+	CRAFTER = 36 # 合成器
 
 class EffectType(object):
 	EMPTY_EFFECT = "empty"                   # 无状态效果
@@ -689,7 +691,7 @@ class EntityType(object):
 	Piglin = 123 | Mob								# 猪灵
 	Hoglin = 124 | Animal							# 疣猪兽
 	Strider = 125 | Animal							# 炽足兽
-	Zoglin = 126 | Mob								# 僵尸疣猪兽
+	Zoglin = 126 | UndeadMob						# 僵尸疣猪兽
 	PiglinBrute = 127 | Mob							# 猪灵蛮兵
 	Goat = 128 | Animal								# 山羊
 	GlowSquid = 129 | WaterAnimal					# 发光鱿鱼
@@ -1253,6 +1255,7 @@ class OpenContainerId(object):
 	CursorContainer = 60 # 指针位置(目前无用)
 	CreatedOutputContainer  = 61 # 创造输出位(目前无用)
 	SmithingTableTemplateContainer = 62 # 锻造台模板位
+	CrafterLevelEntityContainer = 63 # 合成器输入位
 
 class OptionId(object):
 	Undefined = ""
@@ -1262,6 +1265,7 @@ class OptionId(object):
 	SPLIT_CONTROLS = "SPLIT_CONTROLS" 				#准心瞄准
 	VIEW_BOBBING = "VIEW_BOBBING"  					#视角摇晃
 	INPUT_MODE = "INPUT_MODE"						#操作模式
+	TRADITION_CONTROLS = "TRADITION_CONTROLS"		#十字键操作
 	HIDE_HUD = "HIDE_HUD"							#隐藏HUD
 	CAMERA_SHAKE = "CAMERA_SHAKE"					#摄像机摇晃
 	TRANSPARENTLEAVES = "TRANSPARENTLEAVES"			#花俏的树叶
@@ -1276,7 +1280,10 @@ class OriginGUIName(object):
 	MoveLeftBtn = "binding.area.move_left"  # 左移键
 	MoveRightBtn = "binding.area.move_right" # 右移键
 	SneakBtn = "binding.area.sneak"	# 潜行键
+	NewSneakBtn = "binding.area.sneak_new_controls" # 新触控（摇杆模式）潜行键/空中&水底下潜键
 	JumpBtn = "binding.area.jump"	# 跳跃键
+	NewJumpBtn = "binding.area.jump_new_controls" # 新触控（摇杆模式）跳跃键/空中&水底上浮键
+	SprintBtn = "binding.area.sprint" # 冲刺按钮（切换跑/走）
 	AscendBtn = "binding.area.ascend" # 右侧双击跳跃键飞行后操作按键： 上移
 	DescendBtn = "binding.area.descend" # 右侧双击跳跃键飞行后操作按键： 下移
 	PauseBtn = "binding.area.pause" # 暂停键

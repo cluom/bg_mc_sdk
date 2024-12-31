@@ -463,10 +463,17 @@ class GameComponentServer(BaseComponent):
         """
         pass
 
-    def SetPistontMaxInteractionCount(self, value):
+    def SetPistonMaxInteractionCount(self, value):
         # type: (int) -> bool
         """
         设置活塞/粘性活塞最多推动的方块数量，默认为12个方块。该设置不存档。
+        """
+        pass
+
+    def GetPistonMaxInteractionCount(self):
+        # type: () -> int
+        """
+        获取活塞/粘性活塞最多推动的方块数量，默认为12个方块，可能被其他开发者修改。
         """
         pass
 

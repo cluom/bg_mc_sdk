@@ -6,19 +6,18 @@ from mod.client.component.actorRenderCompClient import ActorRenderCompClient
 from mod.client.component.actionCompClient import ActionCompClient
 from mod.client.component.itemCompClient import ItemCompClient
 from typing import Union
-from mod.client.component.blockGeometryCompClient import BlockGeometryCompClient
+from mod.client.component.frameAniControlComp import FrameAniControlComp
 from mod.client.component.attrCompClient import AttrCompClient
 from mod.client.component.textNotifyCompClient import TextNotifyComponet
 from mod.client.component.particleSkeletonBindComp import ParticleSkeletonBindComp
 from mod.client.component.playerViewCompClient import PlayerViewCompClient
-from typing import Any
 from mod.client.component.queryVariableCompClient import QueryVariableComponentClient
 from mod.client.component.effectCompClient import EffectComponentClient
 from mod.client.component.particleEntityBindComp import ParticleEntityBindComp
 from mod.client.component.virtualWorldCompClient import VirtualWorldCompClient
 from mod.client.component.cameraCompClient import CameraComponentClient
 from mod.client.component.engineTypeCompClient import EngineTypeComponentClient
-from mod.client.component.frameAniControlComp import FrameAniControlComp
+from mod.client.component.blockGeometryCompClient import BlockGeometryCompClient
 from mod.client.component.actorMotionCompClient import ActorMotionComponentClient
 from mod.client.component.frameAniSkeletonBindComp import FrameAniSkeletonBindComp
 from mod.client.component.healthCompClient import HealthComponentClient
@@ -37,16 +36,17 @@ from mod.client.component.modelCompClient import ModelComponentClient
 from mod.client.component.nameCompClient import NameComponentClient
 from mod.client.component.gameCompClient import GameComponentClient
 from mod.client.component.particleSystemCompClient import ParticleSystemCompClient
-from mod.client.component.particleTransComp import ParticleTransComp
+from mod.client.component.neteaseWindowCompClient import NeteaseWindowCompClient
 from mod.client.component.configCompClient import ConfigCompClient
 from mod.client.component.playerCompClient import PlayerCompClient
 from mod.client.component.fogCompClient import FogCompClient
+from mod.client.component.particleTransComp import ParticleTransComp
 from mod.client.component.textBoardCompClient import TextBoardComponentClient
 from mod.client.component.postProcessControlComp import PostProcessComponent
 from mod.client.component.auxValueCompClient import AuxValueComponentClient
 from mod.client.component.brightnessCompClient import BrightnessCompClient
 from mod.client.component.deviceCompClient import DeviceCompClient
-from mod.client.component.playerAnimCompClient import PlayerAnimCompClient
+from mod.client.component.frameAniEntityBindComp import FrameAniEntityBindComp
 from mod.client.component.operationCompClient import OperationCompClient
 from mod.client.component.chunkSourceCompClient import ChunkSourceCompClient
 from mod.client.component.rotCompClient import RotComponentClient
@@ -54,7 +54,8 @@ from mod.client.component.collisionBoxCompClient import CollisionBoxComponentCli
 from mod.client.component.particleControlComp import ParticleControlComp
 from mod.client.component.tameCompClient import TameComponentClient
 from mod.client.component.modAttrCompClient import ModAttrComponentClient
-from mod.client.component.frameAniEntityBindComp import FrameAniEntityBindComp
+from mod.client.component.playerAnimCompClient import PlayerAnimCompClient
+from typing import Any
 from mod.client.component.achievementCompClient import AchievementCompClient
 
 class EngineCompFactoryClient():
@@ -286,6 +287,13 @@ class EngineCompFactoryClient():
         # type: (str) -> NeteaseShopCompClient
         """
         创建商城组件
+        """
+        pass
+
+    def CreateNeteaseWindow(self, entityId):
+        # type: (Union[str,int]) -> NeteaseWindowCompClient
+        """
+        创建neteaseWindow组件
         """
         pass
 

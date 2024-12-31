@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from mod.common.utils.timer import CallLater
+from typing import Tuple
 from typing import Any
 from typing import List
 from mod.common.component.baseComponent import BaseComponent
-from typing import Tuple
+from mod.common.utils.timer import CallLater
 
 class GameComponentClient(BaseComponent):
     def ShowHealthBar(self, show):
@@ -263,6 +263,13 @@ class GameComponentClient(BaseComponent):
         # type: (str, str, float, bool, float, float) -> bool
         """
         判断起始对象是否可看见目标对象,基于对象的Head位置判断
+        """
+        pass
+
+    def GetPistonMaxInteractionCount(self):
+        # type: () -> int
+        """
+        获取活塞/粘性活塞最多推动的方块数量，默认为12个方块，可能被其他开发者修改。
         """
         pass
 
