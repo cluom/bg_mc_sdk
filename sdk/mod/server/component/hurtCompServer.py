@@ -11,7 +11,7 @@ class HurtCompServer(BaseComponent):
         pass
 
     def Hurt(self, damage, cause, attackerId=None, childAttackerId=None, knocked=True, customTag=None):
-        # type: (int, str, str, str, bool, str) -> bool
+        # type: (float, str, str, str, bool, str) -> bool
         """
         设置实体伤害
         """

@@ -19,7 +19,7 @@ class EntityComponentServer(BaseComponent):
         pass
 
     def GetEntitiesBySelector(self, command):
-        # type: (string) -> List
+        # type: (str) -> List[str]
         """
         传入目标选择器，获取对应实体id (最大范围是所有已加载的实体)
         """

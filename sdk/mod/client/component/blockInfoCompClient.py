@@ -243,3 +243,17 @@ class BlockInfoComponentClient(BaseComponent):
         """
         pass
 
+    def AddTerrainDestroyParticleEffect(self, name, aux, pos):
+        # type: (str, int, Tuple[float,float,float]) -> bool
+        """
+        在指定位置播放指定方块被开始破坏时的粒子效果（如果有）。
+        """
+        pass
+
+    def RemoveTerrainDestroyParticleEffect(self, name, aux, pos):
+        # type: (str, int, Tuple[float,float,float]) -> bool
+        """
+        停止指定位置播放的方块被开始破坏时的粒子效果。
+        """
+        pass
+

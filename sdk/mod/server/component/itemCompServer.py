@@ -5,13 +5,6 @@ from mod.common.component.baseComponent import BaseComponent
 from typing import Tuple
 
 class ItemCompServer(BaseComponent):
-    def SpawnItemToLevel(self, itemDict, dimensionId=0, pos=(0, 0, 0)):
-        # type: (dict, int, Tuple[float,float,float]) -> bool
-        """
-        生成物品掉落物，如果需要获取物品的entityId，可以调用服务端系统接口CreateEngineItemEntity
-        """
-        pass
-
     def SpawnItemToPlayerCarried(self, itemDict, playerId):
         # type: (dict, str) -> bool
         """
@@ -411,8 +404,8 @@ class ItemCompServer(BaseComponent):
         """
         pass
 
-    def GetItemInfoByBlockName(self, blockName, auxValue=0):
-        # type: (str, int) -> dict
+    def GetItemInfoByBlockName(self, blockName, auxValue=0, isLegacy=True):
+        # type: (str, int, bool) -> dict
         """
         通过方块名称及aux值获取物品信息
         """

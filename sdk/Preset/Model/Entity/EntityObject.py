@@ -441,7 +441,7 @@ class EntityObject(SdkInterface):
         pass
 
     def SetHurt(self, damage, cause, attackerId=None, childAttackerId=None, knocked=True):
-        # type: (int, str, str, str, bool) -> bool
+        # type: (float, str, str, str, bool) -> bool
         """
         对实体造成伤害
         """

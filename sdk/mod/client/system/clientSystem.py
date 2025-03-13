@@ -47,3 +47,17 @@ class ClientSystem(BaseSystem):
         """
         pass
 
+    def CreateClientEntityByTypeStr(self, engineTypeStr, pos, rot):
+        # type: (str, Tuple[float,float,float], Tuple[float,float]) -> Union[str,None]
+        """
+        创建客户端实体
+        """
+        pass
+
+    def DestroyClientEntity(self, entityId):
+        # type: (str) -> None
+        """
+        销毁客户端实体
+        """
+        pass
+

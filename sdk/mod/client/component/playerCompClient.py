@@ -166,3 +166,17 @@ class PlayerCompClient(BaseComponent):
         """
         pass
 
+    def IsOnLadder(self):
+        # type: () -> bool
+        """
+        获取玩家是否与梯子/藤蔓有交叉
+        """
+        pass
+
+    def IsInScaffolding(self):
+        # type: () -> bool
+        """
+        获取玩家是否与脚手架有交叉
+        """
+        pass
+

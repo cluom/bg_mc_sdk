@@ -14,6 +14,7 @@ import mod.common.minecraftEnum as minecraftEnum
 from mod.client.ui.viewBinder import ViewBinder
 from mod.client.system.clientSystem import ClientSystem
 from typing import Tuple
+from mod.common.minecraftEnum import WalkState
 from typing import Callable
 from mod.client.plugin.illustratedBook.bookManager import BookManager
 from typing import Any
@@ -388,6 +389,20 @@ def GetRotFromDir(dir):
     """
     pass
 
+def GetEngineVersion():
+    # type: () -> str
+    """
+    获取游戏版本-客户端。
+    """
+    pass
+
+def GetMinecraftVersion():
+    # type: () -> str
+    """
+    获取Minecraft版本-客户端。
+    """
+    pass
+
 def GetTouchPos():
     # type: () -> Tuple[float,float]
     """
@@ -616,6 +631,13 @@ def GetPlatform():
     # type: () -> int
     """
     获取脚本运行的平台
+    """
+    pass
+
+def GetWalkState():
+    # type: () -> WalkState
+    """
+    获取玩家行走/潜行/跑步状态
     """
     pass
 

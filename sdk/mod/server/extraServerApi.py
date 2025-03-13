@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from mod.common.component.baseComponent import BaseComponent
 from typing import Generator
 from typing import Tuple
 from typing import Union
 from typing import List
+from mod.server.component.engineCompFactoryServer import EngineCompFactoryServer
 from typing import Any
 from typing import Callable
 from mod.server.gamePlay.AI.customGoal import CustomGoal
 from mod.server.system.serverSystem import ServerSystem
 from typing import Type
-from mod.server.component.engineCompFactoryServer import EngineCompFactoryServer
+from mod.common.component.baseComponent import BaseComponent
 import mod.common.minecraftEnum as minecraftEnum
 
 def RegisterComponent(nameSpace, name, clsPath):
@@ -317,6 +317,13 @@ def ImportModule(path):
     # type: (str) -> Any
     """
     使用字符串路径导入模块，作用与importlib.import_module类似，但只能导入当前加载的mod中的模块
+    """
+    pass
+
+def GetMinecraftVersion():
+    # type: () -> str
+    """
+    获取Minecraft版本-服务端。
     """
     pass
 

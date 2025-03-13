@@ -1452,14 +1452,14 @@ class SdkInterface():
         pass
 
     def SetHurtByEntity(self, entityId, attackerId, damage, byPassArmor, knocked=True):
-        # type: (Union[str,int], str, int, bool, bool) -> bool
+        # type: (Union[str,int], str, float, bool, bool) -> bool
         """
         对实体造成伤害
         """
         pass
 
     def SetHurtByEntityNew(self, entityId, damage, cause, attackerId=None, childAttackerId=None, knocked=True):
-        # type: (Union[str,int], int, str, str, str, bool) -> bool
+        # type: (Union[str,int], float, str, str, str, bool) -> bool
         """
         对实体造成伤害
         """
@@ -1574,13 +1574,6 @@ class SdkInterface():
         # type: (str, int, int) -> bool
         """
         设置玩家背包物品数目
-        """
-        pass
-
-    def SpawnItemToLevel(self, itemDict, dimensionId=0, pos=(0, 0, 0)):
-        # type: (dict, int, Tuple[float,float,float]) -> bool
-        """
-        生成物品掉落物，如果需要获取物品的entityId，可以调用服务端系统接口CreateEngineItemEntity
         """
         pass
 

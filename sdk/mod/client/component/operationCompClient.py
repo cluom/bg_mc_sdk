@@ -199,3 +199,17 @@ class OperationCompClient(BaseComponent):
         """
         pass
 
+    def SetControlMode(self, mode):
+        # type: (int) -> bool
+        """
+        设置控制模式
+        """
+        pass
+
+    def SetControlModeLock(self, lock):
+        # type: (bool) -> bool
+        """
+        设置控制模式是否可以被改变
+        """
+        pass
+

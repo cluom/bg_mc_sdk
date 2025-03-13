@@ -33,3 +33,10 @@ class EffectComponentServer(BaseComponent):
         """
         pass
 
+    def GetLoadEffects(self):
+        # type: () -> List[str]
+        """
+        获取所有已加载的状态效果
+        """
+        pass
+

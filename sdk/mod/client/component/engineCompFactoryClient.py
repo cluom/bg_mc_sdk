@@ -57,6 +57,7 @@ from mod.client.component.modAttrCompClient import ModAttrComponentClient
 from mod.client.component.playerAnimCompClient import PlayerAnimCompClient
 from typing import Any
 from mod.client.component.achievementCompClient import AchievementCompClient
+import mod.client.component.dimensionCompClient as dimensionCompClient
 
 class EngineCompFactoryClient():
     def CreateAchievement(self, entityId):
@@ -184,6 +185,12 @@ class EngineCompFactoryClient():
         创建device组件
         """
         pass
+
+    def CreateDimension(self, dimension):
+        """
+        创建neteaseWindow组件
+        """
+        return dimensionCompClient
 
     def CreateEffect(self, entityId):
         # type: (Union[str,int]) -> EffectComponentClient

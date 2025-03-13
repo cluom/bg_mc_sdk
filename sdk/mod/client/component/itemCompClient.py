@@ -138,3 +138,17 @@ class ItemCompClient(BaseComponent):
         """
         pass
 
+    def AddUseItemParticleEffect(self, name, aux, pos):
+        # type: (str, int, Tuple[float,float,float]) -> bool
+        """
+        在指定位置播放指定物品被开始使用时的粒子效果（如果有）。
+        """
+        pass
+
+    def RemoveUseItemParticleEffect(self, name, aux, pos):
+        # type: (str, int, Tuple[float,float,float]) -> bool
+        """
+        停止指定位置播放的物品被开始使用时的粒子效果。
+        """
+        pass
+

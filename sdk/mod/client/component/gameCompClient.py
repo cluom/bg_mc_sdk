@@ -273,3 +273,17 @@ class GameComponentClient(BaseComponent):
         """
         pass
 
+    def SetClipboardContent(self, content):
+        # type: (str) -> bool
+        """
+        设置系统剪贴板内容
+        """
+        pass
+
+    def GetClipboardContent(self):
+        # type: () -> str
+        """
+        获取系统剪贴板内容
+        """
+        pass
+

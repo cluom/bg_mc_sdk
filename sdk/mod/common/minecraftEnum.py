@@ -1273,6 +1273,7 @@ class OptionId(object):
 	SMOOTH_LIGHTING = "SMOOTH_LIGHTING"				#平滑光照
 	GRAPHICS = "GRAPHICS"							#精美图像
 	RENDER_CLOUDS = "RENDER_CLOUDS"					#渲染云
+	FORCE_SPRINT = "FORCE_SPRINT"					#强制疾跑
 
 class OriginGUIName(object):
 	MoveUpBtn = "binding.area.move_up" 		# 上移键
@@ -1290,6 +1291,9 @@ class OriginGUIName(object):
 	ChatBtn = "binding.area.chat"	# 聊天按钮
 	MenuBtn = "binding.area.fold_menu"	# 菜单按钮(截图分享)
 	ReportBtn = "binding.area.report_cheat" # 举报按钮
+	DestroyOrAttackBtn = "binding.area.destroy_or_attack" # 破坏/攻击按钮
+	BuildOrInteractBtn = "binding.area.build_or_interact" # 建造/交互按钮
+	MoveStickBtn = "binding.area.default_move_stick_area" # 新触控摇杆按钮
 
 class PistonFacing(object):
 	Down = 0
