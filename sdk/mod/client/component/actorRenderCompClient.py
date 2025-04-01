@@ -54,7 +54,7 @@ class ActorRenderCompClient(BaseComponent):
         """
         pass
 
-    def AddPlayerTexture(self, geometryKey, geometryName):
+    def AddPlayerTexture(self, textureKey, textureName):
         # type: (str, str) -> bool
         """
         增加玩家渲染贴图
