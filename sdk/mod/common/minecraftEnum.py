@@ -16,7 +16,8 @@ class ActorDamageCause(object):
     BlockExplosion = "block_explosion"  	# 方块爆炸
     EntityExplosion = "entity_explosion"  	# 生物爆炸
     Void = "void"  							# 虚空
-    Suicide = "suicide"  					# 自杀（kill命令）
+    Suicide = "self_destruct"  				# 自杀（kill命令）兼容旧版
+    SelfDestruct = "self_destruct"          # 自杀（kill命令）
     Magic = "magic"  						# 尖牙对生物造成的伤害、守卫者对生物造成的魔法伤害和药水伤害等
     Wither = "wither"  						# 凋零效果
     Starve = "starve"  						# 饥饿
@@ -34,8 +35,9 @@ class ActorDamageCause(object):
     RamAttack = "ram_attack"				# 山羊冲撞
     Custom = "custom"						# 自定义
     SonicBoom = "sonic_boom"				# 音波尖啸(监守者的远程攻击)
-    Campfire = "camp_fire"					# 营火
-    SoulCampfire = "soul_camp_fire"			# 灵魂营火(营火的灵魂火变种)
+    Campfire = "campfire"					# 营火
+    SoulCampfire = "soul_campfire"			# 灵魂营火(营火的灵魂火变种)
+    MaceSmash = "mace_smash"				# 重锤粉碎攻击
 
 class AniCheatBlockBreak(object):
 	OpenSwitch = "server-authoritative-block-breaking"		# 是否开启破坏方块反作弊检查
@@ -50,21 +52,13 @@ class AniCheatConsts(object):
 
 class AniCheatMove(object):
 	CheckStyle = "server-authoritative-movement"	# 位移检查的模式
-	CorrectSwitch = "correct-player-movement"		# 是否对位移有问题的客户端进行纠正
 	MinCorrectDelayTick = "player-rewind-min-correction-delay-ticks"	# 服务端从发现作弊到发送纠正指令的最小tick数，0表示发现作弊时每帧发送纠正指令(int)
 	TickHistorySize = "player-rewind-history-size-ticks"		# 客户端保存历史帧数，用于倒带模拟。每秒20帧(int)
 
 class AniCheatMoveRewind(object):
 	PositionThreshold = "player-rewind-position-threshold"		# 某一帧中，客户端位置与服务端位置的距离平方阈值，超过阈值会触发反作弊纠正(float)
-	VelocityThreshold = "player-rewind-velocity-threshold"	# 某一帧中，客户端速度和服务端速度的差值平方阈值，超过这个阈值会触发反作弊纠正(float)
 	PositionAcceptance = "player-rewind-position-acceptance"	# 某一帧中，如果客户端位置和服务端位置的距离平方小于这个值，服务端会采用客户端的值(float)
 	PositionPersuasion = "player-rewind-position-persuasion"	# 如果客户端和服务端位置不一致，服务端会每帧在客户端的计算方向上加上这个值(float)
-
-class AniCheatMoveUnSupportRewind(object):
-	PositionThreshold = "player-rewind-unsupported-position-threshold"		# 某一帧中，客户端位置与服务端位置的距离平方阈值，超过阈值会触发反作弊纠正(float)
-	VelocityThreshold = "player-rewind-unsupported-velocity-threshold"		# 某一帧中，客户端速度和服务端速度的差值平方阈值，超过这个阈值会触发反作弊纠正(float)
-	PositionAcceptance = "player-rewind-unsupported-position-acceptance"	# 某一帧中，如果客户端位置和服务端位置的距离平方小于这个值，服务端会采用客户端的值(float)
-	PositionPersuasion = "player-rewind-unsupported-position-persuasion"	# 如果客户端和服务端位置不一致，服务端会每帧在客户端的计算方向上加上这个值(float)
 
 class AnimationModeType:
 	NONE = 0  		# 无动画模式
@@ -193,6 +187,7 @@ class BiomeType(object):
 	deep_dark = 190						    # 深暗之域
 	mangrove_swamp = 191					# 红树林沼泽
 	cherry_grove = 192						# 樱花树林
+	pale_garden = 193						# 苍白花园
 
 class BlockBreathability(object):
 	Solid = 0	# 固体
@@ -324,6 +319,12 @@ class EffectType(object):
 	BAD_OMEN = "bad_omen"                    # 不祥之兆， 进入村庄时触发袭击
 	HERO_OF_THE_VILLAGE = "village_hero"     # 村庄英雄，与村民交易价格降低
 	DARKNESS = "darkness"                    # 黑暗,是一种会将玩家的视野限制在15格内，且导致屏幕不时变暗的状态效果。
+	WIND_CHARGED = "wind_charged"			 # 蓄风，是一种让生物死亡时产生风爆的状态效果
+	INFESTED = "infested"					 # 寄生，是一个可以让生物生成蠹虫的状态效果
+	OOZING = "oozing"						 # 渗浆，是一种让生物死亡时产生史莱姆的状态效果
+	TRIAL_OMEN = "trial_omen"				 # 试炼之兆，是不祥之兆的变种，有此效果的玩家会被不祥的trial_omen粒子包围并播放event.mob_effect.trial_omen音效
+	WEAVING = "weaving"						 # 盘丝，是一个可以让生物死亡时传播蜘蛛网以及让生物以较快速度穿过蜘蛛网的状态效果
+	RAID_OMEN = "raid_omen"					 # 袭击之兆，是带有不祥之兆的玩家进入村庄时获得的状态效果，可触发袭击。
 
 class EnchantSlotType(object):
 	NONE = 0					# 非法
@@ -339,6 +340,7 @@ class EnchantSlotType(object):
 	BOW = 32					# 弓
 	SPEAR = 32768				# 三叉戟
 	CROSSBOW = 65536			# 弩
+	HEAVY_WEAPON = 4194304		# 重锤
 
 	# tool group
 	G_TOOL = 131520				# 剪刀、打火石、盾
@@ -401,8 +403,12 @@ class EnchantType(object):
 	CrossbowQuickCharge = 35	# 快速装填
 	SoulSpeed = 36				# 灵魂疾行
 	SwiftSneak = 37             # 迅捷潜行
-	NumEnchantments = 38		# 附魔种数
-	InvalidEnchantment = 39		# 无效附魔
+	WindBurst = 38				# 风爆
+	Density = 39				# 致密
+	Breach = 40					# 破甲
+	NumEnchantments = 41		# 附魔种数
+	InvalidEnchantment = 42		# 无效附魔
+
 	ModEnchant = 255			# 自定义附魔
 
 class EntityColorType:
@@ -704,6 +710,13 @@ class EntityType(object):
 	TraderLlama = 137 | Llama						# 行商羊驼
 	Camel = 138 | Animal							# 骆驼
 	Sniffer = 139 | Animal							# 嗅探兽
+	Breeze = 140 | Monster							# 旋风人
+	BreezeWindChargeProjectile = 141 | Projectile	# 旋风人风弹
+	Armadillo = 142 | Animal						# 犰狳
+	WindChargeProjectile = 143 | Projectile			# 风弹
+	Bogged = 144 | SkeletonMonster					# 沼骸
+	OminousItemSpawner = 145						# 不祥之物生成器
+	Creaking = 146 | Monster						# 嘎枝
 	CustomProjectile = 254 | Projectile				# 自定义抛射物
 	EntityExtension = 255							# 实体扩展
 	MAX_ENTITY_ID = 256								# 最大实体ID
@@ -1116,6 +1129,7 @@ class ItemUseMethodEnum(object):
     Dyed = 13		        # 使用炼药锅对物品染色
     Traded = 14		        # 交易
     BrushingCompleted = 15	# 刷子清刷完毕
+    OpenedVault = 16        # 打开宝库
 
 class KeyBoardType:
 	KEY_GOBACK = 4			# 旧版本遗留，已弃用
@@ -1256,6 +1270,9 @@ class OpenContainerId(object):
 	CreatedOutputContainer  = 61 # 创造输出位(目前无用)
 	SmithingTableTemplateContainer = 62 # 锻造台模板位
 	CrafterLevelEntityContainer = 63 # 合成器输入位
+	DynamicContainer = 64 # 收纳袋槽位
+	NeteaseContainer = 65 # 自定义方块容器槽位 (关闭后放入物品数据存于方块实体中)
+	NeteaseUIContainer = 66 # 网易UI槽位 (数据存于玩家中，关闭ui后放入物品返回背包)
 
 class OptionId(object):
 	Undefined = ""
@@ -1290,10 +1307,20 @@ class OriginGUIName(object):
 	PauseBtn = "binding.area.pause" # 暂停键
 	ChatBtn = "binding.area.chat"	# 聊天按钮
 	MenuBtn = "binding.area.fold_menu"	# 菜单按钮(截图分享)
-	ReportBtn = "binding.area.report_cheat" # 举报按钮
+	ReportBtn = "binding.area.report_cheat" # 举报按钮（已废弃）
+	CameraViewBtn = "binding.area.camera_view" # 摄像机视角按钮
 	DestroyOrAttackBtn = "binding.area.destroy_or_attack" # 破坏/攻击按钮
 	BuildOrInteractBtn = "binding.area.build_or_interact" # 建造/交互按钮
 	MoveStickBtn = "binding.area.default_move_stick_area" # 新触控摇杆按钮
+	WalkState = "binding.area.walkstate"  # 方向键模式下强制疾跑按钮
+	MobEffects = "binding.area.mobeffects"  # buff状态
+	Emote = "binding.area.emote"  # 表情按钮
+
+class PermissionChangeCause(object):
+	ProgrammingInterfaceCaused = 1 	#  API变更
+	CommandCaused = 2 				#  指令变更（包含玩家输入/命令方块）
+	UserInterfaceCaused = 3			#  房主变更（也即房主在设置给他人变更）
+	CocosInterfaceCaused = 4		#  cocos发起变更
 
 class PistonFacing(object):
 	Down = 0
@@ -1364,6 +1391,35 @@ class PlayerUISlot(object):
 	SmithingTableMaterial = 52 # 锻造台材料位
 	SmithingTableTemplate = 53 # 锻造台模板位
 
+class PxActorFlag(object):
+    eDISABLE_GRAVITY = (1 << 1)     # 禁用重力
+    eDISABLE_SIMULATION = (1 << 3)  # 禁用物理模拟
+
+class PxEventMask(object):
+    Null = 0x0          # 不需要碰撞事件。若不为Null，则Found或Lost必须有一个，Server或Client必须有一个
+    Found = 0x1         # 需要接触开始事件
+    Found_Detail = 0x2  # 接触开始事件需要附带碰撞点与法线信息。性能消耗较大。
+    Lost = 0x4          # 需要接触结束事件
+    Server = 0x8        # 需要服务器事件
+    Client = 0x10       # 需要客户端事件
+
+class PxForceMode(object):
+    eFORCE = 0              # 力，单位为质量 × 距离 / 时间²
+    eIMPULSE = 1            # 冲量，单位为质量 × 距离 / 时间
+    eVELOCITY_CHANGE = 2    # 速度变化，单位为距离 / 时间，直接改变速度，与质量无关
+    eACCELERATION = 3       # 加速度，单位为距离 / 时间²，直接施加加速度，与质量无关
+
+class PxRigidBodyFlag(object):
+    eKINEMATIC = (1 << 0)   # 设置刚体的运动学模式。运动学刚体不受力的影响，使用setKinematicTarget控制移动
+
+class PxRigidDynamicLockFlag(object):
+    eLOCK_LINEAR_X = (1 << 0)   # 锁定x轴平移
+    eLOCK_LINEAR_Y = (1 << 1)   # 锁定y轴平移
+    eLOCK_LINEAR_Z = (1 << 2)   # 锁定z轴平移
+    eLOCK_ANGULAR_X = (1 << 3)  # 锁定x轴旋转
+    eLOCK_ANGULAR_Y = (1 << 4)  # 锁定y轴旋转
+    eLOCK_ANGULAR_Z = (1 << 5)  # 锁定z轴旋转
+
 class RayFilterType(object):
 	OnlyEntities = 1 << 0 #仅检测实体
 	OnlyBlocks = 1 << 1 #仅检测方块
@@ -1379,16 +1435,37 @@ class RenderControllerArrayType(object):
 	Texture = 2 #贴图
 
 class RenderLayer(object):
-	Blend = 4		# 半透明
-	Opaque = 5		# 不透明
-	Alpha = 7		# 全透明
-	SeasonOpaque = 9	# 原版用于渲染不透明树叶
-	SeasonAlpha = 10	# 原版用于渲染局部全透明方块
+	DOUBLE_SIDED = 0 # 双面
+	BLEND_WATER = 1 # 半透明水面
+	ALPHATEST_MICRO_BLOCK = 2 # 全透明微缩方块
+	RAY_TRACED_WATER = 3 # 原版光线追踪水面
+	DEFERRED_WATER = 4 # 原版延迟渲染水面
+	BLEND = 5 # 半透明
+	OPAQUE = 6 # 不透明
+	LIGHT_SOURCE = 7 # 原版发光方块
+	OPTIONAL_ALPHATEST = 8 # 局部全透明
+	ALPHATEST = 9 # 全透明
+	SEASONS_OPAQUE = 10 # 原版用于渲染不透明树叶
+	SEASONS_OPTIONAL_ALPHATEST = 11 # 原版用于渲染局部全透明方块
+	ALPHATEST_SINGLE_SIDE = 12 # 单面全透明
+	ENDPORTAL = 13 # 原版末地传送门
+	BARRIER = 14 # 原版屏障
+	LIGHT = 15 # 原版光源
+	STRUCTURE_VOID = 16
 
 class SetBlockType(object):
 	MAN_MADE = 0       #人为
 	NATURE = 1         #自然生成
 	API = 2            #api生成
+
+class ShapeType(object):
+	BOX = 1 # 盒子
+	LINE = 2 # 线条
+	CIRCLE = 3 # 圆
+	ARROW = 4 # 箭头
+	TEXT = 5 # 文本
+	SPHERE = 6 # 球
+	COUNT = 7 # 图形数量
 
 class SliderOptionId(object):
 	Undefined = ""
@@ -1422,7 +1499,8 @@ class StructureFeatureType(object):
 	Bastion = 14			 # 堡垒遗迹
 	AncientCity = 15         # 远古城市
 	TrailRuins = 16          # 古迹废墟
-	NeteaseLargeFeature = 17 # 网易版大型结构特征
+	TrialChambers = 17		 # 试炼密室
+	NeteaseLargeFeature = 18 # 网易版大型结构特征
 
 class TimeEaseType(object):
 	linear = "linear"
