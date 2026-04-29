@@ -5,7 +5,7 @@ from Preset.Model.Effect.EffectObject import EffectObject
 
 class EffectPreset(PresetBase, EffectObject):
     def __init__(self):
-        # type: () -> None
+        # type: () -> 'None'
         """
         EffectPreset（特效预设）是一类绑定特效资源的预设。
         """
@@ -15,14 +15,14 @@ class EffectPreset(PresetBase, EffectObject):
         self.auto = None
 
     def GetResource(self):
-        # type: () -> str
+        # type: () -> 'str'
         """
         获取绑定的json资源
         """
         pass
 
     def SetResource(self, resource):
-        # type: (str) -> None
+        # type: (str) -> 'None'
         """
         设置绑定的json资源
         """

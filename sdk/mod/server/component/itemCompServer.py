@@ -334,21 +334,21 @@ class ItemCompServer(BaseComponent):
         """
         pass
 
-    def SetShearsDestoryBlockSpeed(self, blockName, speed):
+    def SetShearsDestroyBlockSpeed(self, blockName, speed):
         # type: (str, float) -> 'bool'
         """
          设置剪刀对某一方块的破坏速度
         """
         pass
 
-    def CancelShearsDestoryBlockSpeed(self, blockName):
+    def CancelShearsDestroyBlockSpeed(self, blockName):
         # type: (str) -> 'bool'
         """
          取消剪刀对某一方块的破坏速度设置
         """
         pass
 
-    def CancelShearsDestoryBlockSpeedAll(self):
+    def CancelShearsDestroyBlockSpeedAll(self):
         # type: () -> 'bool'
         """
          取消剪刀对全部方块的破坏速度设置
@@ -408,6 +408,20 @@ class ItemCompServer(BaseComponent):
         # type: (str, int, bool) -> 'dict'
         """
         通过方块名称及aux值获取物品信息
+        """
+        pass
+
+    def GetPlayerFishHookEntity(self):
+        # type: () -> 'List'
+        """
+        获取玩家钓鱼时候的鱼漂实体id
+        """
+        pass
+
+    def GetPlayerFishItem(self, getUserData=False):
+        # type: (bool) -> 'dict'
+        """
+        获取玩家钓鱼时候的鱼竿物品字典
         """
         pass
 

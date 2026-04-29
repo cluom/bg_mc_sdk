@@ -9,6 +9,7 @@ from mod.server.component.blockCompServer import BlockCompServer
 from mod.server.component.scaleCompServer import ScaleComponentServer
 from mod.server.component.gravityCompServer import GravityComponentServer
 from mod.server.component.itemCompServer import ItemCompServer
+from mod.server.component.fishingLineCompServer import FishingLineCompServer
 from mod.server.component.msgCompServer import MsgComponentServer
 from mod.server.component.posCompServer import PosComponentServer
 from mod.server.component.expCompServer import ExpComponentServer
@@ -28,7 +29,7 @@ from mod.server.component.tameCompServer import TameComponentServer
 from mod.server.component.petCompServer import PetComponentServer
 from mod.server.component.lootCompServer import LootComponentServer
 from mod.server.component.engineTypeCompServer import EngineTypeComponentServer
-from mod.server.component.collisionBoxCompServer import CollisionBoxComponentServer
+from mod.server.component.projectileCompServer import ProjectileComponentServer
 from mod.server.component.biomeCompServer import BiomeCompServer
 from mod.server.component.rotCompServer import RotComponentServer
 from mod.server.component.modelCompServer import ModelComponentServer
@@ -42,7 +43,7 @@ from mod.server.component.actorPushableCompServer import ActorPushableCompServer
 from mod.server.component.commandCompServer import CommandCompServer
 from mod.server.component.weatherCompServer import WeatherComponentServer
 from mod.server.component.interactCompServer import InteractComponentServer
-from mod.server.component.projectileCompServer import ProjectileComponentServer
+from mod.server.component.collisionBoxCompServer import CollisionBoxComponentServer
 from mod.server.component.attrCompServer import AttrCompServer
 from mod.server.component.shareableCompServer import ShareableComponentServer
 from mod.server.component.itemBannedCompServer import ItemBannedCompServer
@@ -322,6 +323,13 @@ class EngineCompFactoryServer():
         # type: (Union[str,int]) -> 'FeatureCompServer'
         """
         创建feature组件
+        """
+        pass
+
+    def CreateFishingLine(self, entityId):
+        # type: (str) -> 'FishingLineCompServer'
+        """
+        创建fishingLine组件
         """
         pass
 

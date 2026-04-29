@@ -85,7 +85,17 @@ class AttrType(object):
 	FOLLOW_RANGE = 9		# 跟随方块数(一般指怪的仇恨范围), 原版值范围为[1,2024]，默认值为16
 	KNOCKBACK_RESISTANCE = 10	# 击退抵抗，原版值范围为[1,+∞]，默认最大值为1
 	JUMP_STRENGTH = 11		# 跳跃力(指骑乘后跳跃可跳跃的高度)，原版值范围为[0,+∞]
-	ARMOR = 12				# 护甲值，取决于身上穿戴的护甲总防御量和接口增加的额外护甲值。客户端无法获取接口增加的护甲值，建议开发者自行同步
+	ARMOR = 12				# 护甲值，取决于身上穿戴的护甲总防御量和接口增加的额外护甲值。客户端无法获取接口增加的护甲值，建议开发者自行同步。无法通过属性修饰符操作符接口进行操作。
+	ATTACK_KNOCKBACK = 13             # 生物的攻击造成的击退强度的增量
+	ATTACK_SPEED = 14                 # 玩家的攻击速度
+	EXPLOSION_KNOCKBACK_RESISTANCE = 15 # 生物对爆炸击退的抵抗强度
+	FLYING_SPEED = 16                 # 生物的飞行移动的速度
+	SNEAKING_SPEED = 17               # 玩家的潜行时的速度乘数
+	MOVEMENT_EFFICIENCY = 18          # 生物对脚下方块影响移动效果的抵抗
+	WATER_MOVEMENT_EFFICIENCY = 19    # 生物对水影响移动效果的抵抗
+	BLOCK_BREAK_SPEED = 20            # 玩家破坏方块的速度乘数
+	MINING_EFFICIENCY = 21            # 玩家的挖掘速度增量
+	SUBMERGED_MINING_SPEED = 22       # 玩家浸没在水中时的挖掘速度乘数
 
 class AttributeBuffType(object):
 	Hunger = 0                    # 饥饿
@@ -99,6 +109,21 @@ class AttributeBuffType(object):
 	FatalPoison = 8               # 致命中毒
 	SelfHeal = 9                  # 自愈
 	SelfDestruct = 10             # 自毁
+
+class AttributeModifierOperation(object):
+	OperationAddition = 0		# 加法运算
+	OperationMultiplyBase = 1	# 基础乘法运算
+	OperationMultiplyTotal = 2	# 总值乘法运算
+	OperationCap = 3			# 上限运算
+	TotalOperations = 4			# 操作类型总数
+	OperationInvalid = 5		# 无效操作类型
+
+class AttributeOperands(object):
+	OperandMin = 0			# 最小值操作数
+	OperandMax = 1			# 最大值操作数
+	OperandCurrent = 2		# 当前值操作数
+	TotalOperands = 3		# 操作数总数
+	OperandInvalid = 4		# 无效操作数
 
 class BiomeType(object):
 	ocean = 0								# 海洋
@@ -717,6 +742,7 @@ class EntityType(object):
 	Bogged = 144 | SkeletonMonster					# 沼骸
 	OminousItemSpawner = 145						# 不祥之物生成器
 	Creaking = 146 | Monster						# 嘎枝
+	HappyGhast = 147 | Animal						# 快乐恶魂
 	CustomProjectile = 254 | Projectile				# 自定义抛射物
 	EntityExtension = 255							# 实体扩展
 	MAX_ENTITY_ID = 256								# 最大实体ID
@@ -1441,17 +1467,19 @@ class RenderLayer(object):
 	RAY_TRACED_WATER = 3 # 原版光线追踪水面
 	DEFERRED_WATER = 4 # 原版延迟渲染水面
 	BLEND = 5 # 半透明
-	OPAQUE = 6 # 不透明
-	LIGHT_SOURCE = 7 # 原版发光方块
-	OPTIONAL_ALPHATEST = 8 # 局部全透明
-	ALPHATEST = 9 # 全透明
-	SEASONS_OPAQUE = 10 # 原版用于渲染不透明树叶
-	SEASONS_OPTIONAL_ALPHATEST = 11 # 原版用于渲染局部全透明方块
-	ALPHATEST_SINGLE_SIDE = 12 # 单面全透明
-	ENDPORTAL = 13 # 原版末地传送门
-	BARRIER = 14 # 原版屏障
-	LIGHT = 15 # 原版光源
-	STRUCTURE_VOID = 16
+	BLEND_TO_OPAQUE = 6 # 半透明转不透明(远距离渲染为不透明)
+	OPAQUE = 7 # 不透明
+	LIGHT_SOURCE = 8 # 原版发光方块
+	OPTIONAL_ALPHATEST = 9 # 全透明转不透明(远距离渲染为不透明)
+	ALPHATEST = 10 # 全透明
+	SEASONS_OPAQUE = 11 # 原版用于渲染不透明树叶
+	SEASONS_OPTIONAL_ALPHATEST = 12 # 原版季节性全透明转不透明方块
+	ALPHATEST_SINGLE_SIDE = 13 # 单面全透明
+	ALPHATEST_SINGLE_SIDE_TO_OPAQUE = 14 # 单面全透明转不透明(远距离渲染为不透明)
+	ENDPORTAL = 15 # 原版末地传送门
+	BARRIER = 16 # 原版屏障
+	LIGHT = 17 # 原版光源
+	STRUCTURE_VOID = 18 # 原版结构空位
 
 class SetBlockType(object):
 	MAN_MADE = 0       #人为

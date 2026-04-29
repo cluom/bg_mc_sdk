@@ -42,7 +42,7 @@ class BlockInfoComponentServer(BaseComponent):
         """
         pass
 
-    def PlayerDestoryBlock(self, pos, particle=1, sendInv=False):
+    def PlayerDestroyBlock(self, pos, particle=1, sendInv=False):
         # type: (Tuple[int,int,int], int, bool) -> 'bool'
         """
         使用手上工具破坏方块
