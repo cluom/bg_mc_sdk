@@ -4,7 +4,7 @@ from mod.common.component.baseComponent import BaseComponent
 
 class DomainGameCompServer(BaseComponent):
     def GetHostPlayerUid(self):
-        # type: () -> 'int'
+        # type: () -> int
         """
         获取服务器拥有者的uid。
         """
