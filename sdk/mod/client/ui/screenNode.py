@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from mod.client.ui.controls.baseUIControl import BaseUIControl
+from mod.client.ui.screenNode import ScreenNode
 from typing import List
 from typing import Tuple
 
