@@ -14,3 +14,8 @@ class NativeScreenManager(object):
 
 	def UnRegisterScreenProxy(self, screenName, proxyClassName):
 		pass
+
+	@staticmethod
+	def instance():
+		# type: () -> NativeScreenManager
+		pass

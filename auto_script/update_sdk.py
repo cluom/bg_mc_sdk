@@ -28,6 +28,17 @@ _SCREEN_NODE_INIT = (
 _BG_INIT_REL = os.path.join('bg', '__init__.py')
 _VERSION_RE = re.compile(r"^(__version__\s*=\s*)['\"][^'\"]*['\"]", re.MULTILINE)
 
+# NativeScreenManager 缺 instance() 单例入口,clientApi.GetNativeScreenManagerCls().instance()
+# 在 IDE 里无法识别,需补一个静态方法(注意该文件用 Tab 缩进)
+_NSM_REL = os.path.join('mod', 'client', 'ui', 'NativeScreenManager.py')
+_NSM_ANCHOR = 'class NativeScreenManager(object):\n'
+_NSM_INSTANCE = (
+    '\t@staticmethod\n'
+    '\tdef instance():\n'
+    '\t\t# type: () -> NativeScreenManager\n'
+    '\t\tpass\n'
+)
+
 
 def find_whl(package, version):
     """在 DOWNLOAD_DIR 中按版本号定位对应的 whl 文件。
@@ -119,6 +130,35 @@ def patch_screen_node(extract_dir):
     with open(path, 'w', encoding='utf-8') as f:
         f.write(content)
     logger.info('已给 ScreenNode 补 __init__')
+    return True
+
+
+def patch_native_screen_manager(extract_dir):
+    """给 NativeScreenManager 补一个 instance() 静态方法。
+
+    官方 stub 缺这个单例入口,clientApi.GetNativeScreenManagerCls().instance()
+    在 IDE 里无法识别返回类型。追加到类(文件)末尾,返回类型标注为
+    NativeScreenManager,让链式调用可补全。已有则跳过(幂等)。
+    该文件只有 NativeScreenManager 一个类且延伸到文件末尾,所以追加到文件末尾
+    即追加到类末尾;插入内容用 Tab 缩进与原文件一致。
+    """
+    path = os.path.join(extract_dir, _NSM_REL)
+    if not os.path.exists(path):
+        logger.warning('未找到 %s,跳过 NativeScreenManager 补丁', _NSM_REL)
+        return False
+    with open(path, encoding='utf-8') as f:
+        content = f.read()
+    if 'def instance' in content:
+        logger.info('NativeScreenManager 已有 instance,跳过补丁')
+        return False
+    if _NSM_ANCHOR not in content:
+        logger.warning('未找到 NativeScreenManager 类声明,跳过补丁')
+        return False
+    # 追加到类末尾:去掉尾部空行后空一行再接 instance
+    content = content.rstrip('\n') + '\n\n' + _NSM_INSTANCE
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    logger.info('已给 NativeScreenManager 补 instance')
     return True
 
 
@@ -215,6 +255,7 @@ def update_sdk(package, version):
     extract_dir = extract_whl(whl_path, version)
     strip_return_quotes(extract_dir)
     patch_screen_node(extract_dir)
+    patch_native_screen_manager(extract_dir)
     overwrite_sdk(extract_dir)
     bump_bg_version(version)
     # 覆盖完成后清理临时解压目录,临时文件用完即删
