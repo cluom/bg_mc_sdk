@@ -537,6 +537,13 @@ def ReloadOneShader(shaderName):
     """
     pass
 
+def ReloadOneMaterialFile(materialPath):
+    # type: (str) -> bool
+    """
+    重新加载某个material文件
+    """
+    pass
+
 def SetKeepResourceWhenTransfer(keep=True):
     # type: (bool) -> bool
     """

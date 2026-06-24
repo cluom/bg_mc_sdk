@@ -3,4 +3,4 @@
 # @Author : classmate_chen
 # @Email : c_l-m@qq.com
 # @Time : 2024/11/9 14:26
-__version__ = '3.8.0.75813'
+__version__ = '3.9.0.79713'
