@@ -163,10 +163,14 @@ def patch_native_screen_manager(extract_dir):
 
 
 def overwrite_sdk(extract_dir):
-    """把临时目录里的内容(排除 *.dist-info 元数据)覆盖到 sdk/ 目录。
+    """把临时目录里的内容(排除 *.dist-info 元数据)逐文件覆盖合并到 sdk/ 目录。
 
-    按顶层条目逐个替换:目录先删旧再整体拷贝,文件直接覆盖。
-    这样旧版本里已删除的文件也会被清掉,而不仅是叠加。
+    采用"覆盖合并"语义,而非"整目录删了重拷":逐个文件拷过去、同名直接覆盖,
+    缺失的目录按需创建,但**不删除** sdk/ 下 whl 里没有的文件。
+    这样我们自己额外补充、官方 whl 不含的 stub / 脚本(如
+    mod/client/ui/screenController.py)在每次更新后都会被保留,不会被连带删掉。
+    代价:官方在新版里删掉的文件不会被自动清理、会残留——相比误删自定义文件,
+    残留是更可接受的取舍。
     """
     os.makedirs(SDK_DIR, exist_ok=True)
     # 先清理 sdk 下遗留的 *.dist-info(历史手动解压带进来的元数据),sdk 里不该有
@@ -176,20 +180,19 @@ def overwrite_sdk(extract_dir):
             shutil.rmtree(full)
             logger.info('清理 sdk 遗留元数据目录: %s', name)
     count = 0
-    for name in os.listdir(extract_dir):
-        if name.endswith('.dist-info'):
-            continue
-        src = str(os.path.join(extract_dir, name))
-        dst = str(os.path.join(SDK_DIR, name))
-        if os.path.isdir(src):
-            if os.path.exists(dst):
-                shutil.rmtree(dst)
-            shutil.copytree(src, dst)
-        else:
+    for root, dirs, files in os.walk(extract_dir):
+        # 跳过 *.dist-info 目录(元数据,不进 sdk)
+        dirs[:] = [d for d in dirs if not d.endswith('.dist-info')]
+        rel = os.path.relpath(root, extract_dir)
+        dst_root = SDK_DIR if rel == '.' else os.path.join(SDK_DIR, str(rel))
+        if not os.path.isdir(dst_root):
+            os.makedirs(dst_root)
+        for fn in files:
+            src = os.path.join(str(root), str(fn))
+            dst = os.path.join(dst_root, str(fn))
             shutil.copy2(src, dst)
-        count += 1
-        logger.info('覆盖 sdk 条目: %s', name)
-    logger.info('已覆盖 sdk 目录 %s,共 %d 个顶层条目', SDK_DIR, count)
+            count += 1
+    logger.info('已覆盖合并到 sdk 目录 %s,共 %d 个文件', SDK_DIR, count)
     return count
 
 
