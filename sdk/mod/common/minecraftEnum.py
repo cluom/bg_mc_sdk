@@ -109,6 +109,8 @@ class AttributeBuffType(object):
 	FatalPoison = 8               # 致命中毒
 	SelfHeal = 9                  # 自愈
 	SelfDestruct = 10             # 自毁
+	Unknown = 11                  # 未知类型
+	None_ = 12                    # 无明确状态类型（如触发不死图腾等未归类的属性变化）
 
 class AttributeModifierOperation(object):
 	OperationAddition = 0		# 加法运算
@@ -743,6 +745,7 @@ class EntityType(object):
 	OminousItemSpawner = 145						# 不祥之物生成器
 	Creaking = 146 | Monster						# 嘎枝
 	HappyGhast = 147 | Animal						# 快乐恶魂
+	CopperGolem = 148 | PathfinderMob				# 铜傀儡
 	CustomProjectile = 254 | Projectile				# 自定义抛射物
 	EntityExtension = 255							# 实体扩展
 	MAX_ENTITY_ID = 256								# 最大实体ID
@@ -1341,6 +1344,22 @@ class OriginGUIName(object):
 	WalkState = "binding.area.walkstate"  # 方向键模式下强制疾跑按钮
 	MobEffects = "binding.area.mobeffects"  # buff状态
 	Emote = "binding.area.emote"  # 表情按钮
+	TurnInteract = "binding.area.turn_interact"  #转向交互
+	DpadNoTurnInteract = "binding.area.dpad_no_turn_interact"  #方向键无转向交互
+	GuiPassthrough = "binding.area.gui_passthrough"  #GUI穿透区域
+	MoveUpInvisible = "binding.area.move_up_invisible"  #隐藏的向上移动键
+	MiddleRight = "binding.area.middle_right"  #十字键模式上升下降面板区域
+	CodeBuilder = "binding.area.code_builder"  #教育版编程按钮
+	MoveUpLeft = "binding.area.move_up_left"  #向左上方移动（十字键模式）
+	MoveUpRight = "binding.area.move_up_right"  #向右上方移动（十字键模式）
+	PaddleRight = "binding.area.paddle_right"  #右侧划船按钮
+	PaddleLeft = "binding.area.paddle_left"  #左侧划船按钮
+	Toast = "binding.area.toast"  #提示区域
+	KeyJoy = "binding.area.keyjoy"  #按键/摇杆
+	SneakJK = "binding.area.sneak_jk"  #"潜行（按键/摇杆）
+	Store = "binding.area.store"  #商店按钮
+	VState0 = "binding.area.vstate0"  #视图状态0
+	VoiceTrans = "binding.area.voice_trans"  #语音转文字按钮（若”我的好友“已启用，则会消失）
 
 class PermissionChangeCause(object):
 	ProgrammingInterfaceCaused = 1 	#  API变更

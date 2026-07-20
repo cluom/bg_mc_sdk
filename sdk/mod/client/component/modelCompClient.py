@@ -397,38 +397,3 @@ class ModelComponentClient(BaseComponent):
         """
         pass
 
-    def SetFreeModelTexture(self, modelId, texturePath, slotIndex=0):
-        # type: (int, str, int) -> bool
-        """
-        动态设置自由模型(FreeModel)指定纹理槽位的贴图。路径相对于textures/models/。
-        """
-        pass
-
-    def SetGlobalIBLTexture(self, texturePath):
-        # type: (str) -> bool
-        """
-        设置全局IBL环境贴图，会自动应用到所有已注册的PBR FreeModel的TEXTURE_3槽位。
-        """
-        pass
-
-    def GetGlobalIBLTexture(self):
-        # type: () -> str
-        """
-        获取当前全局IBL环境贴图路径
-        """
-        pass
-
-    def CreatePbrFreeModel(self, modelName):
-        # type: (str) -> int
-        """
-        创建PBR自由模型。与CreateFreeModel相同，但会自动注册到全局IBL系统，
-        """
-        pass
-
-    def RemovePbrFreeModel(self, modelId):
-        # type: (int) -> bool
-        """
-        移除PBR自由模型，同时从全局IBL追踪列表中移除。
-        """
-        pass
-
