@@ -10,6 +10,7 @@ from mod.server.component.scaleCompServer import ScaleComponentServer
 from mod.server.component.gravityCompServer import GravityComponentServer
 from mod.server.component.itemCompServer import ItemCompServer
 from mod.server.component.fishingLineCompServer import FishingLineCompServer
+from mod.server.component.blockEntityExDataCompServer import BlockEntityExDataCompServer
 from mod.server.component.msgCompServer import MsgComponentServer
 from mod.server.component.posCompServer import PosComponentServer
 from mod.server.component.expCompServer import ExpComponentServer
@@ -19,20 +20,21 @@ from mod.server.component.nameCompServer import NameComponentServer
 from mod.server.component.bulletAttributesCompServer import BulletAttributesComponentServer
 from mod.server.component.dimensionCompServer import DimensionCompServer
 from mod.server.component.mobSpawnCompServer import MobSpawnComponentServer
-from mod.server.component.redStoneCompServer import RedStoneComponentServer
 from mod.server.component.levelCompServer import LevelComponentServer
 from mod.server.component.timeCompServer import TimeComponentServer
 from mod.server.component.aiCommandCompServer import AiCommandComponentServer
 from mod.server.component.chunkSourceComp import ChunkSourceCompServer
+from mod.server.component.biomeCompServer import BiomeCompServer
 from mod.server.component.chestContainerCompServer import ChestContainerCompServer
 from mod.server.component.tameCompServer import TameComponentServer
 from mod.server.component.petCompServer import PetComponentServer
-from mod.server.component.lootCompServer import LootComponentServer
+from mod.server.component.lobbyGameCompServer import LobbyGameCompServer
 from mod.server.component.engineTypeCompServer import EngineTypeComponentServer
-from mod.server.component.projectileCompServer import ProjectileComponentServer
-from mod.server.component.biomeCompServer import BiomeCompServer
+from mod.server.component.collisionBoxCompServer import CollisionBoxComponentServer
+from mod.server.component.redStoneCompServer import RedStoneComponentServer
 from mod.server.component.rotCompServer import RotComponentServer
 from mod.server.component.modelCompServer import ModelComponentServer
+from mod.server.component.lootCompServer import LootComponentServer
 from mod.server.component.moveToCompServer import MoveToComponentServer
 from mod.server.component.gameCompServer import GameComponentServer
 from mod.server.component.domainGameCompServer import DomainGameCompServer
@@ -43,7 +45,7 @@ from mod.server.component.actorPushableCompServer import ActorPushableCompServer
 from mod.server.component.commandCompServer import CommandCompServer
 from mod.server.component.weatherCompServer import WeatherComponentServer
 from mod.server.component.interactCompServer import InteractComponentServer
-from mod.server.component.collisionBoxCompServer import CollisionBoxComponentServer
+from mod.server.component.projectileCompServer import ProjectileComponentServer
 from mod.server.component.attrCompServer import AttrCompServer
 from mod.server.component.shareableCompServer import ShareableComponentServer
 from mod.server.component.itemBannedCompServer import ItemBannedCompServer
@@ -55,7 +57,6 @@ from mod.server.component.physxCompServer import PhysxComponentServer
 from mod.server.component.entityDefinitionsCompServer import EntityDefinitionsCompServer
 from mod.server.component.explosionCompServer import ExplosionComponentServer
 from mod.server.component.persistenceCompServer import PersistenceCompServer
-from mod.server.component.actionCompServer import ActionCompServer
 from mod.server.component.portalCompServer import PortalComponentServer
 from mod.server.component.queryVariableCompServer import QueryVariableComponentServer
 from mod.server.component.hurtCompServer import HurtCompServer
@@ -64,7 +65,7 @@ from mod.server.component.actorCollidableCompServer import ActorCollidableCompSe
 from mod.server.component.auxValueCompServer import AuxValueComponentServer
 from mod.server.component.achievementCompServer import AchievementCompServer
 from mod.server.component.entityEventCompServer import EntityEventComponentServer
-from mod.server.component.blockEntityExDataCompServer import BlockEntityExDataCompServer
+from mod.server.component.actionCompServer import ActionCompServer
 from mod.server.component.actorOwnerCompServer import ActorOwnerComponentServer
 from mod.server.component.entityComponentServer import EntityComponentServer
 from mod.server.component.featureCompServer import FeatureCompServer
@@ -386,6 +387,13 @@ class EngineCompFactoryServer():
         # type: (Union[str,int]) -> ItemBannedCompServer
         """
         创建itembanned组件
+        """
+        pass
+
+    def CreateLobbyGame(self, entityId):
+        # type: (str) -> LobbyGameCompServer
+        """
+        创建联机大厅组件
         """
         pass
 

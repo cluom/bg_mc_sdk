@@ -38,6 +38,7 @@ class ActorDamageCause(object):
     Campfire = "campfire"					# 营火
     SoulCampfire = "soul_campfire"			# 灵魂营火(营火的灵魂火变种)
     MaceSmash = "mace_smash"				# 重锤粉碎攻击
+    Dehydration = "dehydration"			# 脱水
 
 class AniCheatBlockBreak(object):
 	OpenSwitch = "server-authoritative-block-breaking"		# 是否开启破坏方块反作弊检查
@@ -352,6 +353,7 @@ class EffectType(object):
 	TRIAL_OMEN = "trial_omen"				 # 试炼之兆，是不祥之兆的变种，有此效果的玩家会被不祥的trial_omen粒子包围并播放event.mob_effect.trial_omen音效
 	WEAVING = "weaving"						 # 盘丝，是一个可以让生物死亡时传播蜘蛛网以及让生物以较快速度穿过蜘蛛网的状态效果
 	RAID_OMEN = "raid_omen"					 # 袭击之兆，是带有不祥之兆的玩家进入村庄时获得的状态效果，可触发袭击。
+	BREATH_OF_THE_NAUTILUS = "breath_of_the_nautilus"  # 鹦鹉螺呼吸，骑乘鹦鹉螺时暂停氧气消耗
 
 class EnchantSlotType(object):
 	NONE = 0					# 非法
@@ -368,6 +370,7 @@ class EnchantSlotType(object):
 	SPEAR = 32768				# 三叉戟
 	CROSSBOW = 65536			# 弩
 	HEAVY_WEAPON = 4194304		# 重锤
+	MELEE_SPEAR = 8388608		# 近战长矛
 
 	# tool group
 	G_TOOL = 131520				# 剪刀、打火石、盾
@@ -433,8 +436,9 @@ class EnchantType(object):
 	WindBurst = 38				# 风爆
 	Density = 39				# 致密
 	Breach = 40					# 破甲
-	NumEnchantments = 41		# 附魔种数
-	InvalidEnchantment = 42		# 无效附魔
+	Lunge = 41					# 戳刺
+	NumEnchantments = 42		# 附魔种数
+	InvalidEnchantment = 43		# 无效附魔
 
 	ModEnchant = 255			# 自定义附魔
 
@@ -746,6 +750,10 @@ class EntityType(object):
 	Creaking = 146 | Monster						# 嘎枝
 	HappyGhast = 147 | Animal						# 快乐恶魂
 	CopperGolem = 148 | PathfinderMob				# 铜傀儡
+	Nautilus = 149 | WaterAnimal					# 鹦鹉螺
+	ZombieNautilus = 150 | WaterAnimal | UndeadMob	# 僵尸鹦鹉螺
+	Parched = 151 | SkeletonMonster				# 焦骷髅
+	CamelHusk = 152 | UndeadMob					# 骆驼尸傀
 	CustomProjectile = 254 | Projectile				# 自定义抛射物
 	EntityExtension = 255							# 实体扩展
 	MAX_ENTITY_ID = 256								# 最大实体ID
