@@ -142,7 +142,7 @@ class PhysxComponentServer(BaseComponent):
     def GetActorFlags(self):
         # type: () -> int
         """
-        获取 actor 当前 ActorFlags(诊断接口,bit1=eDISABLE_SIMULATION,bit3=eDISABLE_GRAVITY)
+        获取 actor 当前 ActorFlags(诊断接口,bit1=eDISABLE_GRAVITY,bit2=eSEND_SLEEP_NOTIFIES,bit3=eDISABLE_SIMULATION)
         """
         pass
 
